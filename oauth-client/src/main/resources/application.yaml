@@ -1,0 +1,24 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          messaging-client-id:
+            provider: spring
+            client-id: messaging-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/login/oauth2/code/messaging-client-id"
+            scope: openid,message.read
+            client-name: messaging-client-name
+          messaging-client-id2:
+            provider: spring
+            client-id: messaging-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/callback"
+            scope: openid,message.write
+            client-name: messaging-client-name2
+        provider:
+          spring:
+            issuer-uri: http://localhost:9000
