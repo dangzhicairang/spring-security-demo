@@ -11,7 +11,9 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.endpoint.DefaultClientCredentialsTokenResponseClient;
 import org.springframework.security.oauth2.client.endpoint.DefaultPasswordTokenResponseClient;
+import org.springframework.security.oauth2.client.endpoint.OAuth2ClientCredentialsGrantRequest;
 import org.springframework.security.oauth2.client.endpoint.OAuth2PasswordGrantRequest;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
@@ -82,9 +84,9 @@ public class OAuth2ClientApplication {
     @RequestMapping(value = "/getToken", method = RequestMethod.GET)
     public String getToken() {
         ClientRegistration secret = repository.findByRegistrationId("messaging-client-id3");
-        OAuth2PasswordGrantRequest request =
-                new OAuth2PasswordGrantRequest(secret, "user1", "password");
-        DefaultPasswordTokenResponseClient client = new DefaultPasswordTokenResponseClient();
+        OAuth2ClientCredentialsGrantRequest request =
+                new OAuth2ClientCredentialsGrantRequest(secret);
+        DefaultClientCredentialsTokenResponseClient client = new DefaultClientCredentialsTokenResponseClient();
         OAuth2AccessTokenResponse tokenResponse = client.getTokenResponse(request);
         return tokenResponse.getAccessToken().getTokenValue();
     }

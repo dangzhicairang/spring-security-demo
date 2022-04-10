@@ -23,9 +23,9 @@ spring:
             provider: spring
             client-id: messaging-client
             client-secret: secret
-            authorization-grant-type: password
+            authorization-grant-type: client_credentials
             redirect-uri: "http://127.0.0.1:8080/callback"
-            scope: message.write
+            scope: message.read
             client-name: messaging-client-name3
         provider:
           spring:
