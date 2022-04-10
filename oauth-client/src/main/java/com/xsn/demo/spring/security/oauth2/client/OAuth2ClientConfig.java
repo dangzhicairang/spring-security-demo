@@ -13,7 +13,11 @@ public class OAuth2ClientConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
         return security
                 .authorizeHttpRequests(
-                        request -> request.anyRequest().authenticated()
+                        request -> request
+                                .mvcMatchers("/callback", "/getToken")
+                                    .permitAll()
+                                .anyRequest()
+                                    .authenticated()
                 )
                 .oauth2Login(Customizer.withDefaults())
                 .build();

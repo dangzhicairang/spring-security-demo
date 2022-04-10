@@ -19,6 +19,14 @@ spring:
             redirect-uri: "http://127.0.0.1:8080/callback"
             scope: openid,message.write
             client-name: messaging-client-name2
+          messaging-client-id3:
+            provider: spring
+            client-id: messaging-client
+            client-secret: secret
+            authorization-grant-type: password
+            redirect-uri: "http://127.0.0.1:8080/callback"
+            scope: message.write
+            client-name: messaging-client-name3
         provider:
           spring:
             issuer-uri: http://localhost:9000
