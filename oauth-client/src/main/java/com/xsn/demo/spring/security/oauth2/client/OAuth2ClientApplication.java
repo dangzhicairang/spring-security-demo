@@ -90,4 +90,19 @@ public class OAuth2ClientApplication {
         OAuth2AccessTokenResponse tokenResponse = client.getTokenResponse(request);
         return tokenResponse.getAccessToken().getTokenValue();
     }
+
+    /*@RequestMapping(value = "/protectedResource", method = RequestMethod.GET)
+    public String protectedResource(String token) {
+
+        String uriTemplate = "http://localhost:8090/protectedResource";
+        URI uri = UriComponentsBuilder.fromUriString(uriTemplate).build().toUri();
+        RequestEntity<Void> requestEntity = RequestEntity.get(uri)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+                .build();
+        ResponseEntity<String> response = restTemplate.exchange(requestEntity, String.class);
+
+        return Optional.ofNullable(response)
+                .map(ResponseEntity::getBody)
+                .orElse("empty");
+    }*/
 }

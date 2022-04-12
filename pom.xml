@@ -8,7 +8,8 @@
         <module>oauth-server</module>
         <module>jose</module>
         <module>oauth-client</module>
-    </modules>
+		<module>resource-server</module>
+	</modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
