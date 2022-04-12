@@ -34,16 +34,7 @@ public class OAuth2ServerConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        OAuth2AuthorizationServerConfigurer<HttpSecurity> authorizationServerConfigurer =
-                new OAuth2AuthorizationServerConfigurer<>();
-        RequestMatcher endpointsMatcher = authorizationServerConfigurer
-                .getEndpointsMatcher();
-
-        httpSecurity
-                //.requestMatcher(endpointsMatcher)
-                .csrf(csrf -> csrf.ignoringRequestMatchers(endpointsMatcher))
-                .apply(authorizationServerConfigurer)
-        ;
+        OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(httpSecurity);
         return httpSecurity
                 .authorizeHttpRequests()
                 .anyRequest().permitAll()
